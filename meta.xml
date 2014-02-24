@@ -1,4 +1,5 @@
 <meta>
+	<info author="TheNormalnij, CoolDark" description="ClassicDM" version="0.1" type="gamemode" edf:definition="edf/edf.edf" />
 	<script src="main_s.lua" />
 	
 	<script src="tools/skinFucts.lua" type="shared" />
@@ -22,4 +23,12 @@
 	<script src="command/player_s.lua" type="server" />
 	
 	<script src="save/save_s.lua" type="server" />
+	
+	<settings>
+		<setting name="*register" value="[ false ]"
+				 friendlyname="Register policy"
+				 accept="[ false ],[ true ]"
+				 desc="A player must be registered?"
+		/>
+	</settings>
 </meta>
