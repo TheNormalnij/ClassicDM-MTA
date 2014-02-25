@@ -5,22 +5,25 @@
 --See LICENSE file
 --
 
-addCommandHandler ( "pm",
-	function ( player, cmd, id, ... )
-		local tableText = { ... }
-		local text = table.concat ( tableText, " " )
-		if player ~= g_Players[tonumber ( id )] then
-			if g_Players[tonumber ( id )] ~= nil then
-				outputChatBox ( "#F2F200Message to #08F200".. getPlayerName (g_Players[tonumber (id)]) .." #F2F200: " .. text, player, 255, 255, 255, true )
-				outputChatBox ( "#F2F200Message from #08F200".. getPlayerName ( player ) .." #F2F200: " .. text, g_Players[tonumber (id)], 255, 255, 255, true )
-			else
-				outputChatBox ( "#F20010[Syntax]: /pm id text", player, 255, 255, 255, true )
-			end
-		else
-			outputChatBox ( "#F20010You can not write yourself", player, 255, 255, 255, true  )
-		end
+addCommandHandler ( "pm", function ( source, cmd, id, ... )
+	id = tonumber( id )
+	if not ( id or ... ) then
+		outputChatBox( "#F20010[Syntax]: /" .. cmd .. " id text", source, 255, 255, 255, true )
+		return
 	end
-)
+	local targetPlayer = g_Players[id]
+	if targetPlayer == source then
+		outputChatBox( "#F20010You can not write yourself", source, 255, 255, 255, true  )
+		return
+	end
+	local text = table.concat ( { ... }, " " )
+	if targetPlayer then
+		outputChatBox ( "#F2F200Message to #08F200".. getPlayerName ( targetPlayer ) .." #F2F200: " .. text, source, 255, 255, 255, true )
+		outputChatBox ( "#F2F200Message from #08F200".. getPlayerName ( source ) .." #F2F200: " .. text, targetPlayer, 255, 255, 255, true )
+	else
+		outputChatBox( "#F20010Player not found", source, 255, 255, 255, true  )
+	end
+end )
 
 addCommandHandler ( "pay",
 	function ( player, cmd, id, amount )
