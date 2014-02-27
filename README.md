@@ -1,4 +1,4 @@
-ClassicDM-MTA-
+LOTRS-DM-MTA
 ==============
 
 My test gamemod. Not recommend taking yourself: D
