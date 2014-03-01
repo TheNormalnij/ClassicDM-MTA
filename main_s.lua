@@ -10,9 +10,13 @@ addEventHandler("onPlayerJoin", root, initPlayer )
 
 addEventHandler ( "onResourceStart", resourceRoot, function()
 	initScoreboardColums()
-  for key, player in pairs( getElementsByType( "player" ) ) do
-  	initPlayer( player )
-  end
+	g_Players = getElementsByType( "player" )
+	if get( 'onlyRegisterPlayer' ) then
+		addEventHandler( 'onPlayerLogin', root, onPlayerResumeGame )
+		addEventHandler( 'onPlayerQuit', root, savePlayerData )
+	else
+		addEventHandler( 'onPlayerJoin', root, onGuestPlayerStartGame )
+	end
 end )
 
 addEventHandler ( "onPlayerQuit", root, function()
@@ -34,4 +38,3 @@ addEventHandler ( "onPlayerWasted", root, function ( ammo, killer, killerWeap )
 		givePlayerMoney ( killer, 75 )
 	end
 end )
-

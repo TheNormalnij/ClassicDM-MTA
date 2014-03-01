@@ -1,8 +1,8 @@
 <meta>
-	<info author="TheNormalnij, CoolDark" description="ClassicDM" version="0.1" type="gamemode" edf:definition="edf/edf.edf" />
+	<info author="TheNormalnij, CoolDark" description="ClassicDM" version="0.1.1" type="gamemode" edf:definition="edf/edf.edf" />
 	
-	<script src="main_s.lua" type="server" />
 	<script src="accounts.lua" type="server" />
+	<script src="main_s.lua" type="server" />
 	<script src="spawnManager.lua" type="server" />
 	
 	<script src="scoreboard.lua" type="server" />
@@ -10,8 +10,6 @@
 	<script src="tools/skinFucts.lua" type="shared" />
 	<script src="tables.lua" type="shared" />
 	<script src="skins.lua" type="shared" />
-	
-	<script src="spawn_s.lua" />
 	
 	<script src="blip/blip_cl.lua" type="client" />
 	
@@ -23,16 +21,14 @@
 	
 	<script src="command/player_s.lua" type="server" />
 	
-	<script src="save/save_s.lua" type="server" />
-	
 	<!-- EDF -->
 	<file src="edf/spawnpoint.png" type="client" />
 	
 	<!-- SETTINGS -->
 	<settings>
-		<setting name="*register" value="[ false ]"
+		<setting name="*onlyRegisterPlayer" value="[false]"
 				 friendlyname="Register policy"
-				 accept="[ false ],[ true ]"
+				 accept="[false],[true]"
 				 desc="A player must be registered?"
 		/>
 	</settings>

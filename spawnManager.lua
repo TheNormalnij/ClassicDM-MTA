@@ -3,12 +3,10 @@ local spawns = {}
 local DEFAULT_SKIN = 147
 
 function spawnPointInit()
-  spawns = {}
-  for i, spawn in pairs( getElementsByType( 'spawnpoint' ) ) do
-    spawns[i] = spawn
-  end
+  spawns = getElementsByType( 'spawnpoint' )
+  local mustRegister = get( 'onlyRegisterPlayer' )
   for _, player in pairs( getElementsByType( 'player' ) ) do
-    if not isGuestAccount( getPlayerAccount( player ) ) then
+    if not ( mustRegister and isGuestAccount( getPlayerAccount( player ) ) ) then
       spawn( player )
     end
   end
@@ -26,8 +24,3 @@ function spawn( player, spawnID )
   setCameraTarget ( player, player )
   fadeCamera( player, true, 3.5 )
 end
-
-addEventHandler( 'onPlayerLogin', root, function()
-  spawn( source )
-end )
-
