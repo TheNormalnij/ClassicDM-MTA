@@ -6,17 +6,13 @@
 --
 
 function getSkinNameFromId( id )
-	if tonumber ( id ) then
-		if skins[tonumber (id)] then
-			return skins[tonumber (id)];
-		else
-			return false;
-		end
+	if id then
+		return skins[id] or false
 	end
 end
 
 function getSkinIdFromName( name )
-	if tostring ( name ) then
+	if name then
 		for k,v in pairs(skins) do
 			if(v == name) then return k end
 		end

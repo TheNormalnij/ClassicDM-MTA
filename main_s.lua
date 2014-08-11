@@ -31,7 +31,7 @@ addEventHandler ( "onPlayerWasted", root, function ( ammo, killer, killerWeap )
 	fadeCamera( source, false, 8 )
 	setTimer( spawn, 4000, 1, source )
 	
-	if killer and getElementType(killer) == "player" then
+	if killer and killer ~= source and getElementType(killer) == "player" then
 		local killsCount = ( getElementData( source, 'DM-Kills' ) or 0  ) + 1
 		setElementData( killer, 'DM-Kills', killsCount, false )
 		setElementData( killer, "kd", killsCount .."/".. ( getElementData( killer, 'DM-Death' ) or 0 ) )

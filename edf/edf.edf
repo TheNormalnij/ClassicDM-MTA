@@ -4,7 +4,7 @@
 		<data name="position" type="coord3d" default="0,0,0" />
 		<data name="rotation" type="coord3d" default="0,0,0" />
 		<data name="interior" type="integer" default="0"     />
-		<data name="levelmin" type="natural" default="0"     />
+		<data name="team" type="string" default="default"     />
 		<ped position="!position!" model="7" rotZ="!rotZ!" interior="!interior!"  />
 	</element>
 		

@@ -1,7 +1,10 @@
 <meta>
 	<info author="TheNormalnij, CoolDark" description="ClassicDM" version="0.1.1" type="gamemode" edf:definition="edf/edf.edf" />
 	
+	<script src="utils_s.lua" type="server" />
 	<script src="accounts.lua" type="server" />
+	<script src="database.lua" type="server" />
+	<script src="Fraction.lua" type="server" />
 	<script src="main_s.lua" type="server" />
 	<script src="spawnManager.lua" type="server" />
 	
@@ -10,8 +13,6 @@
 	<script src="tools/skinFucts.lua" type="shared" />
 	<script src="tables.lua" type="shared" />
 	<script src="skins.lua" type="shared" />
-	
-	<script src="blip/blip_cl.lua" type="client" />
 	
 	<script src="gunstore/store_cl.lua" type="client" />
 	<script src="gunstore/store_s.lua" type="server" />
