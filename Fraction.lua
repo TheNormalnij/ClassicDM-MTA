@@ -104,3 +104,32 @@ function getPlayerFraction( player )
 		return getFractionFromTeam( team )
 	end
 end
+
+--
+
+addEventHandler( 'onPlayerLoad', root, function( accountName )
+	local fraction = getPlayerFraction( source )
+	if fraction then
+		fraction.memberList[accountName].player = source
+	end
+end )
+
+addEventHandler( 'onPlayerQuit', root, function( )
+	local fraction = getPlayerFraction( source )
+	local accountName = getPlayerAccountName( source )
+	if fraction and accountName then
+		fraction.memberList[accountName].player = nil
+	end
+end )
+
+-- Client-server
+
+addEvent( 'getFractionMemberList', true )
+
+addEventHandler( 'getFractionMemberList', root, function( name )
+	if fractions[name] then
+		triggerClientEvent( client, 'onGetFractionMemberList', root, fraction[name].memberList )
+		return true
+	end
+	triggerClientEvent( client, 'onGetFractionMemberList', root, 'ERROR:Invalid fraction' )
+end )

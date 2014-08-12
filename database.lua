@@ -1,6 +1,9 @@
 
 local sqlLink = dbConnect ( "sqlite", "database.db" )
 
+addEvent( 'onPlayerLoad' )
+addEvent( 'onFractionLoad' )
+
 local function loadFractionMemberList( fraction )
 	dbQuery( function( queryHandle,
 		local resultTable, num, err = dbPoll( queryHandle, 0 )
@@ -11,6 +14,7 @@ local function loadFractionMemberList( fraction )
 				local data = resultTable[i]
 				memberList[ data.account ] = { level = data.level }
 			end
+			triggerEvent( 'onFractionLoad' )
 		elseif resultTable == nil then
 			dbFree(queryHandle)
 		elseif resultTable == false then
@@ -52,9 +56,12 @@ local function loadPlayer( player )
 			local fraction = getFractionFromName( playerData.fractionID )
 			spawnPlayer( player, playerData.x, playerData.y, playerData.z, 0,
 				playerData.skin, playerData.interior, 0, fraction and fraction.team or nil )
+			setCameraTarget ( player, player )
+			fadeCamera( player, true, 3.5 )
 			givePlayerMoney ( player, playerData.money )
 			setElementHealth ( player, playerData.health )
 			setElementArmor ( player, playerData.armor )
+			triggerEvent( 'onPlayerLoad', player, accountName )
 		elseif resultTable == nil then
 			dbFree(queryHandle)
 		elseif resultTable == false then
