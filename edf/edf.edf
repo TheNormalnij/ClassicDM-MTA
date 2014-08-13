@@ -4,18 +4,18 @@
 		<data name="position" type="coord3d" default="0,0,0" />
 		<data name="rotation" type="coord3d" default="0,0,0" />
 		<data name="interior" type="integer" default="0" />
-		<data name="team" type="selection:'Police','Yakuza' default="'Police'" />
+		<data name="team" type="selection:Police,Yakuza,Default" default="Default" />
 		<ped position="!position!" model="7" rotZ="!rotZ!" interior="!interior!"  />
 	</element>
 
-	<element name="teamVehicle" friendlyname="Team vehcile" icon="edf/spawnpoint.png">
+	<element name="teamVehicle" friendlyname="Team vehcile" icon="edf/teamvehicle.png">
 		<data name="position" type="coord3d" default="0,0,0" />
 		<data name="rotation" type="coord3d" default="0,0,0" />
 		<data name="interior" type="integer" default="0" />
 		<data name="model" type="vehicleID" default="400" />
-		<data name="team" type="selection:'Police','Yakuza' default="'Police'" />
+		<data name="team" type="selection:Police,Yakuza" default="Police" />
 		<data name="level" type="selection:1,2,3" default="1" />
-		<vehicle position="!position!" model="!model!" rotZ="!rotZ!" interior="!interior!"  />
+		<vehicle position="!position!" model="!model!" rotation="!rotation!" interior="!interior!"  />
 	</element>
 		
 </def>

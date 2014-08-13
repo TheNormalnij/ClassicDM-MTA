@@ -8,11 +8,34 @@ local function initPlayer( player )
 end
 addEventHandler("onPlayerJoin", root, initPlayer )
 
+local function onPlayerLogin( )
+	loadPlayer( source )
+end
+
+local function onGuestPlayerStartGame( )
+	setPlayerTeam( source, getTeamFromName( 'Default' ) )
+	spawn( source )
+	givePlayerMoney ( source, 1000 )
+end
+
+local function savePlayerData( )
+	savePlayer( source )
+end
+
+local function blockLogout( )
+	cancelEvent()
+end
+
 addEventHandler ( "onResourceStart", resourceRoot, function()
 	initScoreboardColums()
 	g_Players = getElementsByType( "player" )
+	local defaultTeam = createTeam( 'Default' )
+	for id, player in pairs( g_Players ) do
+		setPlayerTeam( player, defaultTeam )
+	end
 	if get( 'onlyRegisterPlayer' ) then
-		addEventHandler( 'onPlayerLogin', root, onPlayerResumeGame )
+		addEventHandler( 'onPlayerLogin', root, onPlayerLogin )
+		addEventHandler( 'onPlayerLogout', root, blockLogout )
 		addEventHandler( 'onPlayerQuit', root, savePlayerData )
 	else
 		addEventHandler( 'onPlayerJoin', root, onGuestPlayerStartGame )

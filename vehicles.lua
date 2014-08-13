@@ -3,8 +3,10 @@ local function initTeamVehicles( )
 	for _, teamVehicle in ipairs( getElementsByType( 'teamVehicle' ) ) do
 		setElementData( teamVehicle, 'fraction', getFractionFromName( getElementData( teamVehicle, 'team' ) ) )
 		local x, y, z = getElementPosition( teamVehicle )
-		local rX, rY, rZ = getElementRotation( teamVehicle )
-		local vehicle = createVehicle( getElementData( teamVehicle, 'model' ), x, y, z + 1, rX, rY, rZ )
+		local rX = getElementData( teamVehicle, 'rotX' )
+		local rY = getElementData( teamVehicle, 'rotY' )
+		local rZ = getElementData( teamVehicle, 'rotZ' )
+		local vehicle = createVehicle( getElementData( teamVehicle, 'model' ), x, y, z, rX, rY, rZ )
 		setElementParent( vehicle, teamVehicle )
 		setVehicleRespawnPosition( vehicle, x, y, z, rX, rY, rZ )
 	end
@@ -18,7 +20,7 @@ addEventHandler( 'onVehicleStartEnter', root, function( player )
 	local vehicleLevel = getElementData( source, 'level' )
 	local playerFraction = getPlayerFraction( player )
 	local playerLevel = playerFraction and playerFraction:getMemberData( player ).level
-	if vehicleLevel > playerLevel or vehicleFraction ~= playerFraction then
+	if vehicleFraction ~= playerFraction or vehicleLevel > playerLevel then
 		cancelEvent()
 	end
 end )

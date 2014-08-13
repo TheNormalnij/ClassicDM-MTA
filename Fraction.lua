@@ -1,5 +1,5 @@
 
-local fractions = {}
+fractions = {}
 
 Fraction = {}
 Fraction.__index = Fraction
@@ -18,13 +18,11 @@ function Fraction:create( name, vColor )
 	return false
 end
 
-Fraction.__call = Fraction.create
-
 function Fraction:setLeader( player )
 	if player and isElement( player ) and getElementType( player ) == 'player' then
 		local accountName = getPlayerAccountName( player )
 		if accountName then
-			self.leader == accountName
+			self.leader = accountName
 			return true
 		end
 	end
