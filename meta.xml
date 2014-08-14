@@ -8,6 +8,7 @@
 	<script src="main_s.lua" type="server" />
 	<script src="spawnManager.lua" type="server" />
 	<script src="vehicles.lua" type="server" />
+	<script src="greenzone.lua" type="server" />
 	
 	<script src="scoreboard.lua" type="server" />
 	
@@ -26,7 +27,7 @@
 	<!-- EDF -->
 	<file src="edf/spawnpoint.png" type="client" />
 	<file src="edf/teamvehicle.png" type="client" />
-
+	<file src="edf/greenzone.png" type="client" />
 	
 	<!-- SETTINGS -->
 	<settings>
