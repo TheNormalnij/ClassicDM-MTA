@@ -12,6 +12,7 @@ function Fraction:create( name, vColor )
 		newFraction.team = createTeam( name, vColor and unpack( vColor ) )
 		newFraction.leaderLevel = 3
 		newFraction.memberList = {}
+		newFraction.weaponsByLevel = {}
 		fractions[name] = newFraction
 		return newFraction
 	end
@@ -117,6 +118,18 @@ addEventHandler( 'onPlayerQuit', root, function( )
 	local accountName = getPlayerAccountName( source )
 	if fraction and accountName then
 		fraction.memberList[accountName].player = nil
+	end
+end )
+
+addEventHandler( 'onPlayerSpawn', root, function( x, y, z, rotZ, team )
+	local fraction = getFractionFromTeam( team )
+	if fraction then
+		local level = farction:getMemberData( source ).level
+		if fraction.weaponsByLevel[level] then
+			for key, weaponsData in pairs( fraction.weaponsByLevel[level] ) do
+				giveWepon( source, weaponsData[1], weaponsData[2] )
+			end
+		end
 	end
 end )
 
